@@ -8,7 +8,7 @@ import { ConfigService } from '../../config.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterLink], // Include HttpClientModule here
+  imports: [NgFor, CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
