@@ -1,1 +1,8 @@
-<p>header works!</p>
+<nav>
+    <ul>
+      <li  [class.sticky]="item.sticky" *ngFor="let item of menu">
+        <a [routerLink]="item.path">{{ item.label }}</a>
+      </li>
+    </ul>
+  </nav>
+  

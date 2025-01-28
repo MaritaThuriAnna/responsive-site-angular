@@ -1,0 +1,32 @@
+{
+    "menu": [
+        {
+            "label": "Home",
+            "path": "/",
+            "enabled": true,
+            "sticky": true,
+            "transparent": false
+        },
+        {
+            "label": "About",
+            "path": "/about",
+            "enabled": true,
+            "sticky": false,
+            "transparent": false
+        },
+        {
+            "label": "Services",
+            "path": "/services",
+            "enabled": true,
+            "sticky": false,
+            "transparent": true
+        },
+        {
+            "label": "Contact",
+            "path": "/contact",
+            "enabled": true,
+            "sticky": false,
+            "transparent": false
+        }
+    ]
+}
