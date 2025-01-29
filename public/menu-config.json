@@ -28,5 +28,9 @@
             "sticky": false,
             "transparent": false
         }
-    ]
+    ],
+    "footer": {
+        "enabled": true,
+        "sticky": true
+    }
 }
