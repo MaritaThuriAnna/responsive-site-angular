@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ContentService } from '../../content.service';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  title: string = '';
+  content: string = '';
 
+  private contentService = inject(ContentService);
+
+  ngOnInit() {
+    const pageData = this.contentService.getPageContent('home');
+    this.title = pageData.title;
+    this.content = pageData.content;
+  }
 }
