@@ -32,5 +32,34 @@
     "footer": {
         "enabled": true,
         "sticky": true
+    },
+    "sidebar": {
+        "enabled": true,
+        "items": [
+            {
+                "label": "About",
+                "enabled": true,
+                "subMenu": [
+                    {"label": "Our Story", "path": "/our-story", "enabled": true},
+                    {"label": "Meet the Team", "path": "/team", "enabled": true}
+                ]
+            },
+            {
+                "label": "Services",
+                "enabled": true,
+                "subMenu": [
+                    {"label": "Consulting", "path": "/consulting", "enabled": true},
+                    {"label": "Development", "path": "/development", "enabled": true}
+                ]
+            },
+            {
+                "label": "Settings",
+                "enabled": true,
+                "subMenu": [
+                    {"label": "Profile", "path": "/profile", "enabled": true},
+                    {"label": "Page Settings", "path": "/settings", "enabled": true}
+                ]
+            }
+        ]
     }
 }

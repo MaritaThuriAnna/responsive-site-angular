@@ -7,14 +7,14 @@ import { Injectable } from "@angular/core";
 export class ConfigService {
     private config: any;
     private URL = 'menu-config.json';
-    
+
     async loadConfig(): Promise<any> {
-        console.log("1")
+        // console.log("1")
         try {
-            console.log("2")
+            // console.log("2")
             const resp = await fetch(this.URL);
-            console.log("My response: ", resp);
-            return await resp.json();
+            this.config = await resp.json(); 
+            return this.config;
         }
         catch (error) {
             console.error('Failed to load configuration:', error);
@@ -23,7 +23,21 @@ export class ConfigService {
     }
 
     getMenu() {
-        console.log("3")
+        // console.log("3")
         return this.config?.menu?.filter((item: any) => item.enabled) || [];
-      }
+    }
+
+    getSidebar() {
+        if (!this.config || !this.config.sidebar || !this.config.sidebar.enabled) {
+            return [];
+        }
+
+        return this.config.sidebar.items
+            .filter((item: any) => item.enabled)
+            .map((item: any) => ({
+                ...item,
+                subMenu: item.subMenu ? item.subMenu.filter((sub: any) => sub.enabled) : []
+            }));
+    }
+
 }
