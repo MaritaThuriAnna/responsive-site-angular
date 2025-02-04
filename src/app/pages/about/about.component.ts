@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ContentService } from '../../content.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../lang.service';
 
 @Component({
   selector: 'app-about',
@@ -11,12 +13,15 @@ import { ContentService } from '../../content.service';
 export class AboutComponent {
   title: string = '';
   content: string = '';
+  @Input() pageName!: string;
 
-  private contentService = inject(ContentService);
+  constructor(private langService: LanguageService) {}
 
   ngOnInit() {
-    const pageData = this.contentService.getPageContent('about');
-    this.title = pageData.title;
-    this.content = pageData.content;
+    this.langService.changePage('about');
+    this.langService.currentPageContent.subscribe((content) => {
+      this.title = content.title;
+      this.content = content.content;
+    });
   }
 }

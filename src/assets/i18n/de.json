@@ -1,0 +1,25 @@
+{
+    "home": {
+      "title": "Willkommen auf Ihrer Website!",
+      "content": "Erkunden Sie unsere Dienstleistungen, lernen Sie das Unternehmen kennen und nehmen Sie Kontakt auf!"
+    },
+    "about": {
+      "title": "Über Uns",
+      "content": "Wir sind ein Unternehmen, das sich der Bereitstellung der besten Dienstleistungen für unsere Kunden widmet."
+    },
+    "services": {
+      "title": "Unsere Dienstleistungen",
+      "content": "Wir bieten eine Reihe professioneller Dienstleistungen, um Ihre Bedürfnisse zu erfüllen."
+    },
+    "contact": {
+      "title": "Kontaktieren Sie Uns",
+      "content": "Kontaktieren Sie uns für Anfragen, Unterstützung oder Kooperationsmöglichkeiten."
+    },
+    "language": {
+      "switch": "Sprache wechseln",
+      "english": "Englisch",
+      "german": "Deutsch",
+      "romanian": "Rumänisch"
+    }
+  }
+  

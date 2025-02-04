@@ -1,0 +1,24 @@
+{
+    "home": {
+      "title": "Bienvenido a tu sitio!",
+      "content": "Explora nuestros servicios, conoce más sobre nuestro negocio y ponte en contacto con nosotros."
+    },
+    "about": {
+      "title": "Sobre Nosotros",
+      "content": "Somos una empresa dedicada a proporcionar los mejores servicios a nuestros clientes."
+    },
+    "services": {
+      "title": "Nuestros Servicios",
+      "content": "Ofrecemos una variedad de servicios profesionales para satisfacer tus necesidades."
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "content": "Comunícate con nosotros para consultas, soporte o oportunidades de colaboración."
+    },
+    "language": {
+      "english": "Inglés",
+      "german": "Alemán",
+      "spanish": "Español"
+    }
+  }
+  

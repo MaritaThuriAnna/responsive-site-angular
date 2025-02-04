@@ -1,0 +1,32 @@
+.switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .switcher select {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .switcher select:hover {
+    border-color: #007bff;
+  }
+  
+  .switcher select:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .switcher option {
+    background: #fff;
+    color: #333;
+  }
+  

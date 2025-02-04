@@ -15,8 +15,8 @@ export class ContactComponent {
   private contentService = inject(ContentService);
 
   ngOnInit() {
-    const pageData = this.contentService.getPageContent('contact');
-    this.title = pageData.title;
-    this.content = pageData.content;
+    // const pageData = this.contentService.getPageContent('contact');
+    // this.title = pageData.title;
+    // this.content = pageData.content;
   }
 }

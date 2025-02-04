@@ -1,1 +1,7 @@
-<p>language-switcher works!</p>
+<div class="switcher">
+  <select (change)="changeLanguage($event)">
+    <option *ngFor="let language of languages" [value]="language.code">
+      {{ language.name }}
+    </option>
+  </select>
+</div>

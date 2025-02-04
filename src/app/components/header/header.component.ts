@@ -4,11 +4,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { config } from 'rxjs';
 import { ConfigService } from '../../config.service';
+import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterLink],
+  imports: [NgFor, CommonModule, RouterLink, LanguageSwitcherComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
