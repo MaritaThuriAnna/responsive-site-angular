@@ -1,0 +1,12 @@
+<nav class="nav-container">
+    <ul>
+      <li  [class.sticky]="item.sticky" *ngFor="let item of menu">
+        <a [routerLink]="item.path">{{ item.label }}</a>
+      </li>
+    </ul>
+    <app-language-switcher></app-language-switcher>
+        <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+  </nav>
+  

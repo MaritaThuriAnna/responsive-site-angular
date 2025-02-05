@@ -1,0 +1,43 @@
+{
+  "home": {
+    "title": "Bienvenido a tu sitio!",
+    "content": "Explora nuestros servicios, conoce más sobre nuestro negocio y ponte en contacto con nosotros."
+  },
+  "about": {
+    "title": "Sobre Nosotros",
+    "content": "Somos una empresa dedicada a proporcionar los mejores servicios a nuestros clientes."
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "content": "Ofrecemos una variedad de servicios profesionales para satisfacer tus necesidades."
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "content": "Comunícate con nosotros para consultas, soporte o oportunidades de colaboración."
+  },
+  "menu": {
+    "Home": "Inicio",
+    "About": "Sobre Nosotros",
+    "Services": "Servicios",
+    "Contact": "Contacto"
+  },
+  "footer": {
+    "label": "2025 Su empresa. Todos los derechos reservados."
+  },
+  "sidebar": {
+    "About": "Sobre Nosotros",
+    "Our Story": "Nuestra Historia",
+    "Meet the Team": "Conoce al Equipo",
+    "Services": "Servicios",
+    "Consulting": "Consultoría",
+    "Development": "Desarrollo",
+    "Settings": "Configuraciones",
+    "Profile": "Perfil",
+    "Page Settings": "Configuración de Página"
+  },
+  "language": {
+    "english": "Inglés",
+    "german": "Alemán",
+    "spanish": "Español"
+  }
+}
