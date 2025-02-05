@@ -1,27 +1,19 @@
-# ResponsiveSiteAngular
+# Angular Demo Site
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+## Overview
+ResponsiveSiteAngular is a multi-language, fully responsive web application built using **Angular**. It includes dynamic page content translation using **ngx-translate**, a centralized language service, and reusable components. The project is designed for easy scalability and localization.
 
-## Development server
+## Features
+- **Multi-language support** (English, German, Spanish)
+- **Dynamic content loading** for different pages
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Deployment
+The project is deployed at: **https://responsive-site-angular.vercel.app/**
 
-## Code scaffolding
+## Language Support
+This application supports multiple languages. The translations are managed in **`assets/i18n/`**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### **Adding a New Language**
+1. Create a new JSON file in `src/assets/i18n/`, e.g., `fr.json` for French.
+2. Add the translations following the structure of `en.json`.
+3. Update the **LanguageSwitcherComponent** to include the new language.
