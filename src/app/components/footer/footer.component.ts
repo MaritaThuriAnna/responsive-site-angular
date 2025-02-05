@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import { NgIf } from '@angular/common';
+import { LanguageService } from '../../lang.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,16 +13,18 @@ import { NgIf } from '@angular/common';
 export class FooterComponent implements OnInit{
   enabled = false;
   sticky = false;
-  private configService = inject(ConfigService);
+  footerText = '';
 
-  async ngOnInit() {
-    try{
-      const config = await this.configService.loadConfig();
-      console.log('Config loaded:', config);
-      this.enabled = config.footer.enabled;
-      this.sticky = config.footer.sticky;
-    }catch (error) {
-      console.error('Error loading footer configuration:', error);
-    }
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit() {
+
+    this.languageService.currentFooter.subscribe((footer) => {
+      this.footerText = footer.label;
+      this.enabled = footer.enabled;
+      this.sticky = footer.sticky;
+    });
+
+    this.languageService.loadFooter();
   }
 }

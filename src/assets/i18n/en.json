@@ -15,6 +15,26 @@
     "title": "Contact Us",
     "content": "Reach out to us for inquiries, support, or collaboration opportunities."
   },
+  "menu": {
+    "Home": "Home",
+    "About": "About",
+    "Services": "Services",
+    "Contact": "Contact"
+  },
+  "footer": {
+    "label": "2025 Your Company. All Rights Reserved."
+  },
+  "sidebar": {
+    "About": "About",
+    "Our Story": "Our Story",
+    "Meet the Team": "Meet the Team",
+    "Services": "Services",
+    "Consulting": "Consulting",
+    "Development": "Development",
+    "Settings": "Settings",
+    "Profile": "Profile",
+    "Page Settings": "Page Settings"
+  },
   "language": {
     "english": "English",
     "german": "German"

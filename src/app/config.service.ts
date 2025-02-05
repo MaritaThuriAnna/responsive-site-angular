@@ -9,17 +9,16 @@ export class ConfigService {
     private URL = 'menu-config.json';
 
     async loadConfig(): Promise<any> {
-        // console.log("1")
+        if (this.config) return this.config;
+
         try {
-            // console.log("2")
-            const resp = await fetch(this.URL);
-            this.config = await resp.json(); 
-            return this.config;
+          const resp = await fetch(this.URL);
+          this.config = await resp.json();
+          return this.config;
+        } catch (error) {
+          console.error('Failed to load configuration:', error);
+          throw error;
         }
-        catch (error) {
-            console.error('Failed to load configuration:', error);
-            throw error;
-        };
     }
 
     getMenu() {

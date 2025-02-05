@@ -15,6 +15,26 @@
       "title": "Kontaktieren Sie Uns",
       "content": "Kontaktieren Sie uns für Anfragen, Unterstützung oder Kooperationsmöglichkeiten."
     },
+    "menu": {
+    "Home": "Startseite",
+    "About": "Über uns",
+    "Services": "Dienstleistungen",
+    "Contact": "Kontakt"
+  },
+  "footer": {
+    "label": "2025 Ihr Unternehmen. Alle Rechte vorbehalten."
+  },
+  "sidebar": {
+    "About": "Über uns",
+    "Our Story": "Unsere Geschichte",
+    "Meet the Team": "Das Team kennenlernen",
+    "Services": "Dienstleistungen",
+    "Consulting": "Beratung",
+    "Development": "Entwicklung",
+    "Settings": "Einstellungen",
+    "Profile": "Profil",
+    "Page Settings": "Seiteneinstellungen"
+  },
     "language": {
       "switch": "Sprache wechseln",
       "english": "Englisch",

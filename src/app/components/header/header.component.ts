@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { config } from 'rxjs';
 import { ConfigService } from '../../config.service';
 import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
+import { LanguageService } from '../../lang.service';
 
 @Component({
   selector: 'app-header',
@@ -18,17 +19,12 @@ export class HeaderComponent implements OnInit {
 
   private configService = inject(ConfigService);
 
+  constructor(private languageService: LanguageService) {}
+
   async ngOnInit() {
-    console.log('HeaderComponent initialized.');
-
-    try {
-      const config = await this.configService.loadConfig();
-      console.log('Config loaded:', config);
-      this.menu = config.menu.filter((item: any) => item.enabled);
-    } catch (error) {
-      console.error('Error loading menu configuration:', error);
-    }
+    this.languageService.currentMenu.subscribe((menu) => {
+      this.menu = menu.filter((item: any) => item.enabled);
+    });
+    this.languageService.loadMenu();
   }
-
-
 }
