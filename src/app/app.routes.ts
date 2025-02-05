@@ -4,6 +4,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NgModule } from '@angular/core';
+import { PageSettingsComponent } from './pages/settings/page-settings/page-settings.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,7 +18,7 @@ export const routes: Routes = [
     { path: 'consulting', component: ServicesComponent },
     { path: 'development', component: ServicesComponent },
     { path: 'profile', component: HomeComponent },
-    { path: 'settings', component: HomeComponent },
+    { path: 'settings', component: PageSettingsComponent },
 ];
 
 @NgModule({
