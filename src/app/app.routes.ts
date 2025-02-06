@@ -5,13 +5,14 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NgModule } from '@angular/core';
 import { PageSettingsComponent } from './pages/settings/page-settings/page-settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'contact', component: ContactComponent },
-
+    
     //submenus
     { path: 'our-story', component: AboutComponent },
     { path: 'team', component: AboutComponent },
@@ -19,6 +20,8 @@ export const routes: Routes = [
     { path: 'development', component: ServicesComponent },
     { path: 'profile', component: HomeComponent },
     { path: 'settings', component: PageSettingsComponent },
+    
+    { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

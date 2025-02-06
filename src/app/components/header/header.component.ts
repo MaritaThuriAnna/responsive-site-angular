@@ -17,8 +17,6 @@ import { LanguageService } from '../../lang.service';
 export class HeaderComponent implements OnInit {
   menu: any[] = [];
 
-  private configService = inject(ConfigService);
-
   constructor(private languageService: LanguageService) {}
 
   async ngOnInit() {

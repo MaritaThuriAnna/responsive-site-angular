@@ -1,23 +1,22 @@
 <div class="sidebar" [class.collapsed]="!isExpanded">
-  <button class="toggle-btn" (click)="toggleSidebar()">
+  <button class="toggle-btn" (click)="isExpanded = !isExpanded">
     {{ isExpanded ? "-" : "+" }}
   </button>
 
   <ul>
     <li *ngFor="let item of sidebar">
-      <div class="menu-item" (click)="item.subMenu ? toggleDropdown(item.label) : null">
-        <a *ngIf="!item.subMenu" [href]="item.path">{{ item.label }}</a>
-        <span *ngIf="item.subMenu">
-          {{ item.label }}
-          <span [innerHTML]="dropdowns[item.label] ? '&#8679;' : '&#8681;'"></span>
-        </span>
+      <div class="menu-item" (click)="item.subMenu ? toggleDropdown(item.label) : navigateTo(item.path)">
+        <span>{{ item.label }}</span>
+        <span *ngIf="item.subMenu" [innerHTML]="dropdowns[item.label] ? '&#8679;' : '&#8681;'"></span>
       </div>
-
-      <ul *ngIf="item.subMenu && item.subMenu.length > 0 && dropdowns[item.label]" class="submenu">
+      <ng-container >
+      <ul *ngIf="item.subMenu && dropdowns[item.label]" class="submenu">
         <li *ngFor="let subItem of item.subMenu">
-          <a [routerLink]="subItem.path">{{ subItem.label }}</a>
+          <a (click)="navigateTo(subItem.path)">{{ subItem.label }}</a>
         </li>
       </ul>
+      </ng-container>
+
     </li>
   </ul>
 </div>
