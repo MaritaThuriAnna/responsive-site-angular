@@ -1,13 +1,12 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { ConfigService } from '../../config.service';
+import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../lang.service';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, RouterLink],
+  imports: [CommonModule, NgFor, NgIf],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -16,8 +15,9 @@ export class SidebarComponent implements OnInit {
   isExpanded = true;
   dropdowns: { [key: string]: boolean } = {};
 
-  private configService = inject(ConfigService);
-  constructor(private languageService: LanguageService) {}
+  constructor(
+    private languageService: LanguageService,
+    private router: Router) {}
 
   async ngOnInit() {
     this.languageService.currentSidebar.subscribe((sidebar) => {
@@ -25,6 +25,10 @@ export class SidebarComponent implements OnInit {
     });
 
     this.languageService.loadSidebar();
+  }
+  
+  navigateTo(path: string) {
+    this.router.navigate([path]);
   }
 
   toggleSidebar() {

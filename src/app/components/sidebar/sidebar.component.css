@@ -1,5 +1,4 @@
 .sidebar {
-    /* background: #2c3e50; */
     background: linear-gradient(to right, #445565, #2c3e50);
     color: white;
     transition: width 0.3s ease-in-out, transform 0.3s ease;

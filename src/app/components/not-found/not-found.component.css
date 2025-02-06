@@ -1,0 +1,32 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.not-found h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.not-found a {
+    margin-top: 1rem;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.not-found a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}

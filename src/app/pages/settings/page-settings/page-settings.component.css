@@ -1,0 +1,35 @@
+.settings-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.setting {
+    margin-bottom: 15px;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-options button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+select, button {
+    font-family: var(--primary-font);
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 4px;
+}

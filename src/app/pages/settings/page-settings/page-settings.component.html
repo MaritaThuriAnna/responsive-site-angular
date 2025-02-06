@@ -1,0 +1,28 @@
+<div class="settings-container">
+    <h2>Customize Your Experience</h2>
+  
+    <div class="setting">
+      <label>Select Theme Color:</label>
+      <div class="color-options">
+        <button *ngFor="let color of colors" 
+                [style.backgroundColor]="color" 
+                (click)="changeColor(color)">
+        </button>
+      </div>
+    </div>
+  
+    <div class="setting">
+      <label>Select Font:</label>
+      <select (change)="changeFont($event)">
+        <option *ngFor="let font of fonts" [value]="font">{{ font }}</option>
+      </select>
+    </div>
+  
+    <div class="setting">
+      <label>Dark Mode:</label>
+      <button (click)="toggleDarkMode()">
+        {{ isDarkMode ? "Disable Dark Mode" : "Enable Dark Mode" }}
+      </button>
+    </div>
+  </div>
+  
