@@ -10,12 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './page-settings.component.css'
 })
 export class PageSettingsComponent {
-  colors = ['#00a6ff', '#ff7933', '#19692c', '#cc8100', '#8c68ce'];
+  colors = ['#fffaeb', '#ff7933', '#19692c', '#cc8100', '#8c68ce'];
   fonts = ['Arial', 'Courier New', 'Georgia', 'Tahoma', 'Verdana'];
   isDarkMode = false;
 
   constructor(private themeService: ThemeService) {
-    // dark mode setting
     this.themeService.darkMode.subscribe((mode) => {
       this.isDarkMode = mode;
     });
