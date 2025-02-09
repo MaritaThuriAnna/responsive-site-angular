@@ -1,7 +1,7 @@
 .sidebar {
-    background: linear-gradient(to right, #445565, #2c3e50);
+    background: var(--sidebar-gradient);
     color: white;
-    transition: width 0.3s ease-in-out, transform 0.3s ease;
+    transition: background 0.3s ease-in-out, width 0.3s ease-in-out;
     overflow: hidden;
     padding: 1rem;
     box-sizing: border-box;
@@ -16,7 +16,6 @@
     width: 200px;
     transform: translateX(0);
 }
-
 
 .sidebar.collapsed {
     width: 80px;
@@ -35,7 +34,7 @@
 .toggle-btn {
     top: 15px;
     right: 15px;
-    background: #192532;
+    background: var(--gradient-dark);
     color: white;
     border: none;
     border-radius: 100%;
@@ -72,12 +71,12 @@ ul {
 }
 
 .menu-item:hover {
-    background: #34495e;
+    background: var(--gradient-dark);
 }
 
 .submenu {
     padding-left: 1rem;
-    background: #34495e;
+    background: var(--gradient-dark);
     border-radius: 5px;
     margin-top: 0.3rem;
 }
@@ -88,7 +87,7 @@ ul {
 }
 
 .submenu li:hover {
-    background: #1d2b38;
+    background: #353637;
 }
 
 a {

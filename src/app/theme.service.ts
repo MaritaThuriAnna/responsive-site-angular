@@ -37,9 +37,25 @@ export class ThemeService {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }
 
+  updateGradient() {
+    const color = this.colorSource.getValue();
+    const isDark = this.darkModeSource.getValue();
+
+    const gradientLight = `linear-gradient(to right, ${color}, #2c3e50)`;
+    const gradientDark = `linear-gradient(to right, #2c3e50, ${color})`;
+    const btnDark = `#1e1e1e`;
+
+    document.documentElement.style.setProperty('--sidebar-gradient', isDark ? gradientDark : gradientLight);
+
+    const darkButtonGradient = `linear-gradient(to right, #1d2b38, ${color})`;
+    document.documentElement.style.setProperty('--gradient-dark', btnDark);
+  }
+
+
   applyTheme() {
     document.documentElement.style.setProperty('--primary-color', this.colorSource.getValue());
     document.documentElement.style.setProperty('--primary-font', this.fontSource.getValue());
     document.documentElement.setAttribute('data-theme', this.darkModeSource.getValue() ? 'dark' : 'light');
+    this.updateGradient();
   }
 }
