@@ -6,7 +6,10 @@ import { ApiService } from './api-service.service';
   providedIn: 'root'
 })
 export class DropdownService {
+  //ensures subscribers get the most recent value immediately upon subscription
   private countriesSource = new BehaviorSubject<string[]>([]);
+  //asObservable() converts BehaviorSubject into a read-only Observable
+  //other components can subscribe to currentCountries, but they cannot modify it directly
   currentCountries = this.countriesSource.asObservable();
 
 
@@ -20,6 +23,7 @@ export class DropdownService {
     this.apiService.getCountries().subscribe(
       (countries) => {
         console.log("Countries loaded successfully:", countries);
+        //saves the new value inside the BehaviorSubject and automatically notifies all subscribers/components.
         this.countriesSource.next(countries);
       },
       (error) => {

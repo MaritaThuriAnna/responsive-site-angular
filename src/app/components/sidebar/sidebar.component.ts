@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private languageService: LanguageService,
     private router: Router,
-    private themeService: ThemeService,) {}
+    private themeService: ThemeService) {}
 
   async ngOnInit() {
     this.languageService.currentSidebar.subscribe((sidebar) => {
@@ -35,21 +35,14 @@ export class SidebarComponent implements OnInit {
 
     this.themeService.currentColor.subscribe(color => {
       this.primaryColor = color;
-      this.applyGradient();
+      this.themeService.updateGradient();
     });
 
     this.themeService.darkMode.subscribe(isDark => {
       this.isDarkMode = isDark;
-      this.applyGradient();
+      this.themeService.updateGradient();
     });
 
-    this.applyGradient();
-  }
-
-  applyGradient() {
-    const gradientLight = `linear-gradient(to right, ${this.primaryColor}, #1e1e1e)`;
-    const gradientDark = `linear-gradient(to right,rgb(32, 32, 32), ${this.primaryColor})`;
-    document.documentElement.style.setProperty('--sidebar-gradient', this.isDarkMode ? gradientDark : gradientLight);
   }
 
   navigateTo(path: string) {

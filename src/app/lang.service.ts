@@ -14,21 +14,22 @@ export class LanguageService {
   private currentPageSource = new BehaviorSubject<string>('home');
   currentPage = this.currentPageSource.asObservable();
 
-  private pageContentSource = 
-  new BehaviorSubject<{ 
-    title: string; 
-    content: string; 
-    countrySelect: string; 
-    citySelect: string;
-    countryOption: string;
-    cityOption: string; }>({
-    title: '',
-    content: '',
-    countrySelect: '',
-    citySelect: '',
-    countryOption:'',
-    cityOption:''
-  });
+  private pageContentSource =
+    new BehaviorSubject<{
+      title: string;
+      content: string;
+      countrySelect: string;
+      citySelect: string;
+      countryOption: string;
+      cityOption: string;
+    }>({
+      title: '',
+      content: '',
+      countrySelect: '',
+      citySelect: '',
+      countryOption: '',
+      cityOption: ''
+    });
 
   currentPageContent = this.pageContentSource.asObservable();
 
@@ -73,9 +74,9 @@ export class LanguageService {
 
   loadPageContent(page: string) {
     this.translate.get([
-      `${page}.title`, 
-      `${page}.content`, 
-      `${page}.countrySelect`, 
+      `${page}.title`,
+      `${page}.content`,
+      `${page}.countrySelect`,
       `${page}.citySelect`,
       `${page}.countryOption`,
       `${page}.cityOption`
@@ -108,6 +109,7 @@ export class LanguageService {
 
   async loadFooter() {
     try {
+      //loads default footer text
       const config = await this.configService.loadConfig();
       this.translate.get('footer.label').subscribe((translatedText: string) => {
         const translatedFooter = {

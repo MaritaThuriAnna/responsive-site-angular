@@ -30,7 +30,7 @@ export class ServicesComponent {
   constructor(private langService: LanguageService, private dropdownService: DropdownService) { }
 
   ngOnInit() {
-    this.langService.changePage('services');
+   this.langService.changePage('services');
 
     this.langService.currentPageContent.subscribe((content) => {
       this.title = content.title;
@@ -41,8 +41,10 @@ export class ServicesComponent {
       this.cityOpt = content.cityOption;
     });
 
+    //whenever countriesSource is updated, this component automatically gets new data
     this.dropdownService.currentCountries.subscribe(countries => this.countries = countries);
     this.dropdownService.cities$.subscribe(cities => this.cities = cities);
+
     this.dropdownService.loadCountries();
   }
 

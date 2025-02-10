@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.BASE_URL_COUNTRIES}`).pipe(
       map(response => {
         if (!Array.isArray(response)) {
-          console.error("API response is invalid (not an array):", response);
+          console.error("API response is invalid:", response);
           return [];
         }
         console.log("API response :", response);
