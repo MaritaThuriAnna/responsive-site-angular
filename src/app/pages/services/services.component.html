@@ -1,2 +1,10 @@
 <h1>{{ title }}</h1>
 <p>{{ content }}</p>
+
+<label>Select Country:</label>
+<select (change)="onCountryChange($event)">
+  <option value="" disabled selected>Select a country...</option>
+  <option *ngFor="let country of countries" [value]="country">
+    {{ country }}
+  </option>
+</select>
