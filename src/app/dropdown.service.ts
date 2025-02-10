@@ -22,7 +22,6 @@ export class DropdownService {
  loadCountries() {
     this.apiService.getCountries().subscribe(
       (countries) => {
-        console.log("Countries loaded successfully:", countries);
         //saves the new value inside the BehaviorSubject and automatically notifies all subscribers/components.
         this.countriesSource.next(countries);
       },

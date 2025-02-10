@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, retry, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +12,23 @@ export class ApiService {
 
   private BASE_URL_COUNTRIES = 'https://restcountries.com/v3.1/all'
 
-  getCountries(): Observable< string[]> {
+  getCountries(): Observable<string[]> {
     return this.http.get<any[]>(`${this.BASE_URL_COUNTRIES}`).pipe(
+      tap(() => console.log("Fetching country data...")),
+       // retry the request up to 2 times if it fails
+      retry(2),
       map(response => {
         if (!Array.isArray(response)) {
-          console.error("API response is invalid:", response);
           return [];
         }
-        console.log("API response :", response);
-
         const europeanCountries = response
-        .filter(country => country.region === "Europe")
-        .map((country: any) => country.name?.common);
+          .filter(country => country.region === "Europe")
+          .map((country: any) => country.name?.common);
 
-        console.log("European Countries:", europeanCountries);
+        console.log("European Countries Loaded:", europeanCountries);
         return europeanCountries;
-      })
+      }),
+      catchError(this.handleError) 
     );
   }
 
@@ -36,15 +37,30 @@ export class ApiService {
     const body = { country: countryName };
 
     return this.http.post<any>(this.BASE_URL_CITIES, body, { headers }).pipe(
+      tap(() => console.log(`cities for ${countryName}...`)),
+      retry(1), 
       map(response => {
         if (!response.data) {
-          console.error(`No cities found for ${countryName}:`, response);
           return [];
         }
-
-        console.log(`Cities for ${countryName}:`, response.data);
         return response.data;
-      })
+      }),
+      catchError(this.handleError) 
     );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error("API Error:", error);
+    
+    let errorMessage = "Something went wrong. Please try again later.";
+    
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Client Error: ${error.error.message}`;
+    } else {
+      errorMessage = `Server Error: ${error.status} - ${error.message}`;
+    }
+    alert(errorMessage);
+
+    return throwError(() => new Error(errorMessage));
   }
 }
