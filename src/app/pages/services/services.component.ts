@@ -3,12 +3,12 @@ import { Component, inject, Input } from '@angular/core';
 import { ContentService } from '../../content.service';
 import { LanguageService } from '../../lang.service';
 import { DropdownService } from '../../dropdown.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './services.component.html',
   styleUrl: '../home/home.component.css'
 })
