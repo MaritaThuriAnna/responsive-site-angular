@@ -1,0 +1,67 @@
+{
+    "categories": [
+        {
+            "name": "Countries",
+            "options": {
+                "USA": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago"
+                ],
+                "Germany": [
+                    "Berlin",
+                    "Munich",
+                    "Hamburg"
+                ],
+                "France": [
+                    "Paris",
+                    "Lyon",
+                    "Marseille"
+                ]
+            },
+            "subOptions": {
+                "New York": [
+                    "Statue of Liberty",
+                    "Central Park"
+                ],
+                "Berlin": [
+                    "Brandenburg Gate",
+                    "Reichstag"
+                ],
+                "Paris": [
+                    "Eiffel Tower",
+                    "Louvre"
+                ]
+            }
+        },
+        {
+            "name": "Car Brands",
+            "options": {
+                "Toyota": [
+                    "Corolla",
+                    "Camry",
+                    "RAV4"
+                ],
+                "BMW": [
+                    "X5",
+                    "X3",
+                    "M3"
+                ],
+                "Tesla": [
+                    "Model S",
+                    "Model 3",
+                    "Model X"
+                ]
+            },
+            "subOptions": {
+                "Corolla": [
+                    "Gasoline",
+                    "Hybrid"
+                ],
+                "Model S": [
+                    "Electric"
+                ]
+            }
+        }
+    ]
+}

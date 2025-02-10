@@ -1,3 +1,4 @@
+
 import { Component, inject, Input } from '@angular/core';
 import { ContentService } from '../../content.service';
 import { LanguageService } from '../../lang.service';

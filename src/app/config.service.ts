@@ -12,12 +12,12 @@ export class ConfigService {
         if (this.config) return this.config;
 
         try {
-          const resp = await fetch(this.URL);
-          this.config = await resp.json();
-          return this.config;
+            const resp = await fetch(this.URL);
+            this.config = await resp.json();
+            return this.config;
         } catch (error) {
-          console.error('Failed to load configuration:', error);
-          throw error;
+            console.error('Failed to load configuration:', error);
+            throw error;
         }
     }
 

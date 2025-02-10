@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
 import { ConfigService } from "./config.service";
+import { DropdownService } from "./dropdown.service";
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +34,9 @@ export class LanguageService {
   });
   currentFooter = this.footerSource.asObservable();
 
-  constructor(private translate: TranslateService, private configService: ConfigService) {
+  constructor(
+    private translate: TranslateService,
+    private configService: ConfigService) {
     this.translate.setDefaultLang('en');
     this.loadPageContent('home');
     this.loadMenu();
@@ -83,20 +86,20 @@ export class LanguageService {
 
   async loadFooter() {
     try {
-      const config = await this.configService.loadConfig();  
+      const config = await this.configService.loadConfig();
       this.translate.get('footer.label').subscribe((translatedText: string) => {
         const translatedFooter = {
           label: translatedText || config.footer.label,
           enabled: config.footer.enabled,
           sticky: config.footer.sticky
         };
-          this.footerSource.next(translatedFooter);
+        this.footerSource.next(translatedFooter);
       });
-  
+
     } catch (error) {
     }
   }
-  
+
   async loadSidebar() {
     try {
       const config = await this.configService.loadConfig();
@@ -106,9 +109,9 @@ export class LanguageService {
           label: translations[item.label] || item.label,
           subMenu: item.subMenu
             ? item.subMenu.map((sub: any) => ({
-                ...sub,
-                label: translations[sub.label] || sub.label
-              }))
+              ...sub,
+              label: translations[sub.label] || sub.label
+            }))
             : []
         }));
         this.sidebarSource.next(translatedSidebar);
@@ -118,5 +121,4 @@ export class LanguageService {
       console.error("Failed to load sidebar:", error);
     }
   }
-
 }
