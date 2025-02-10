@@ -14,9 +14,20 @@ export class LanguageService {
   private currentPageSource = new BehaviorSubject<string>('home');
   currentPage = this.currentPageSource.asObservable();
 
-  private pageContentSource = new BehaviorSubject<{ title: string; content: string }>({
+  private pageContentSource = 
+  new BehaviorSubject<{ 
+    title: string; 
+    content: string; 
+    countrySelect: string; 
+    citySelect: string;
+    countryOption: string;
+    cityOption: string; }>({
     title: '',
-    content: ''
+    content: '',
+    countrySelect: '',
+    citySelect: '',
+    countryOption:'',
+    cityOption:''
   });
 
   currentPageContent = this.pageContentSource.asObservable();
@@ -61,10 +72,21 @@ export class LanguageService {
   }
 
   loadPageContent(page: string) {
-    this.translate.get([`${page}.title`, `${page}.content`]).subscribe((translations) => {
+    this.translate.get([
+      `${page}.title`, 
+      `${page}.content`, 
+      `${page}.countrySelect`, 
+      `${page}.citySelect`,
+      `${page}.countryOption`,
+      `${page}.cityOption`
+    ]).subscribe((translations) => {
       this.pageContentSource.next({
         title: translations[`${page}.title`],
-        content: translations[`${page}.content`]
+        content: translations[`${page}.content`],
+        countrySelect: translations[`${page}.countrySelect`],
+        citySelect: translations[`${page}.citySelect`],
+        countryOption: translations[`${page}.countryOption`],
+        cityOption: translations[`${page}.cityOption`]
       });
     });
   }

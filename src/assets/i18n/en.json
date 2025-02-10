@@ -9,7 +9,11 @@
   },
   "services": {
     "title": "Our Services",
-    "content": "We offer a range of professional services to meet your needs."
+    "content": "We offer a range of professional services to meet your needs.",
+    "countrySelect": "Select Country: ",
+    "citySelect": "Select City:",
+    "countryOption": "Select a country...",
+    "cityOption": "Select a city..."
   },
   "contact": {
     "title": "Contact Us",

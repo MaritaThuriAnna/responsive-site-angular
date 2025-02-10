@@ -1,18 +1,18 @@
 <h1>{{ title }}</h1>
 <p>{{ content }}</p>
 
-<label>Select Country:</label>
+<p>{{ country }}</p>
 <select (change)="onCountryChange($event)">
-  <option value="" disabled selected>Select a country...</option>
+  <option value="" disabled selected>{{ countryOpt }}</option>
   <option *ngFor="let country of countries" [value]="country">
     {{ country }}
   </option>
 </select>
 
 <div *ngIf="cities.length">
-    <label>Select City:</label>
+    <p>{{city}}</p>
     <select>
-      <option value="" disabled selected>Select a city...</option>
+      <option value="" disabled selected>{{ cityOpt }}</option>
       <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
     </select>
   </div>

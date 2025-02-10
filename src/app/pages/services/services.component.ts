@@ -15,6 +15,10 @@ import { NgFor, NgIf } from '@angular/common';
 export class ServicesComponent {
   title: string = '';
   content: string = '';
+  country : string = '';
+  city: string = '';
+  countryOpt : string = '';
+  cityOpt: string = '';
   @Input() pageName!: string;
 
   countries: string[] = [];
@@ -31,6 +35,10 @@ export class ServicesComponent {
     this.langService.currentPageContent.subscribe((content) => {
       this.title = content.title;
       this.content = content.content;
+      this.country = content.countrySelect;
+      this.city = content.citySelect;
+      this.countryOpt = content.countryOption;
+      this.cityOpt = content.cityOption;
     });
 
     this.dropdownService.currentCountries.subscribe(countries => this.countries = countries);
