@@ -23,7 +23,8 @@
     "Home": "Inicio",
     "About": "Sobre Nosotros",
     "Services": "Servicios",
-    "Contact": "Contacto"
+    "Contact": "Contacto",
+    "Login": "Iniciar sesión"
   },
   "footer": {
     "label": "2025 Su empresa. Todos los derechos reservados."

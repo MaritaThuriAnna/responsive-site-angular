@@ -8,12 +8,13 @@ import { PageSettingsComponent } from './pages/settings/page-settings/page-setti
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './components/login/auth.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'services', component: ServicesComponent },
-    { path: 'contact', component: ContactComponent },
+    { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+    { path: 'services', component: ServicesComponent, canActivate: [AuthGuard]},
+    { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 
@@ -27,8 +28,3 @@ export const routes: Routes = [
     
     { path: '**', component: NotFoundComponent },
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-}) export class AppRoutingModule { }

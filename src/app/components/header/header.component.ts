@@ -1,12 +1,8 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { config } from 'rxjs';
-import { ConfigService } from '../../config.service';
 import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 import { LanguageService } from '../../lang.service';
-
 @Component({
   selector: 'app-header',
   standalone: true,
