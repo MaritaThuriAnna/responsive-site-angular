@@ -1,12 +1,21 @@
-<form #form="ngForm" (ngSubmit)="login(form)">
-    <label for="email">Email:</label>
-    <input type="email" id="email" ngModel name="email" required email/>
-  
-    <label for="password">Password:</label>
-    <input type="password" id="password" ngModel name="password" required  />
-  
-    <button type="submit">Login</button>
+<div class="login-container">
+  <h2>Login</h2>
+  <form #form="ngForm" (ngSubmit)="login(form)">
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" ngModel name="email" required email />
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" ngModel name="password" required />
+    </div>
+
+    <button type="submit" class="btn-login">Login</button>
   </form>
 
-  <a routerLink="/register" >Need Account ? <span class="text-danger">Register</span></a>
-  <a routerLink="/forgot-password"> Forgot Password ? </a>
+  <div class="links">
+    <a routerLink="/register">Need an account? <span>Register</span></a>
+    <a routerLink="/forgot-password">Forgot Password?</a>
+  </div>
+</div>

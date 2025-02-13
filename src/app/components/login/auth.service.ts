@@ -7,10 +7,14 @@ import {
 import { Router } from '@angular/router';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { User } from './user.model';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  authState: Observable<any>;
+  
   userData: User = {
     uid: '',
     email: '',
@@ -42,6 +46,7 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
+    this.authState = this.afAuth.authState;
   }
   // Sign in with email/password
   async SignIn(email: string, password: string) {
@@ -156,7 +161,7 @@ export class AuthService {
   async SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['/login']);
     });
   }
 }
