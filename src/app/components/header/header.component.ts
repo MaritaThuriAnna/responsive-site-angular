@@ -37,9 +37,12 @@ export class HeaderComponent implements OnInit {
     this.languageService.loadMenu();
 
     this.authService.authState.subscribe((user) => {
-      this.isLoggedIn = !!user; // true if user exists, false otherwise
+      this.isLoggedIn = !!user; 
     });
+
+    this.isLoggedIn = this.authService.isLoggedIn()
   }
+
   updateMenu(menu: any[]) {
     this.homeItem = menu.find(item => item.path === "/");
     this.menu = menu.filter(item => item.enabled && item.label !== "/");

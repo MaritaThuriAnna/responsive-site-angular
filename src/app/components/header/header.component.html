@@ -5,7 +5,6 @@
       <a [routerLink]="homeItem.path">{{ homeItem.label }}</a>
     </li>
 
-    <!-- other menu items only visible when logged in -->
     <ng-container *ngIf="isLoggedIn">
       <li [class.sticky]="item.sticky" *ngFor="let item of menu">
         <a [routerLink]="item.path">{{ item.label }}</a>

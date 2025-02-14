@@ -27,13 +27,6 @@
             "enabled": true,
             "sticky": false,
             "transparent": false
-        },
-        {
-            "label": "Login",
-            "path": "/login",
-            "enabled": true,
-            "sticky": true,
-            "transparent": false
         }
     ],
     "footer": {

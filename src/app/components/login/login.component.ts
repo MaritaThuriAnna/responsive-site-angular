@@ -15,8 +15,6 @@ export class LoginComponent {
   }
   authService = inject(AuthService);
   login(form: NgForm) {
-    console.log(form.value);
-
     const email = form.value.email;
     const password = form.value.password;
 

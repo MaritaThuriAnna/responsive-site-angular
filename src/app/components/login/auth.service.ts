@@ -5,7 +5,6 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider } from 'firebase/auth';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -14,7 +13,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   authState: Observable<any>;
-  
+  isLogged = false
   userData: User = {
     uid: '',
     email: '',
@@ -22,7 +21,7 @@ export class AuthService {
     photoURL: '',
     emailVerified: false
   };
-  
+
   constructor(
     public afAuth: AngularFireAuth,
     public afs: AngularFirestore,
@@ -37,33 +36,43 @@ export class AuthService {
         this.userData.email = user.email ?? '';
         this.userData.photoURL = user.photoURL ?? '';
         this.userData.emailVerified = user.emailVerified ?? false;
-        
 
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
+        // localStorage.setItem('user', JSON.stringify(this.userData));
+        // JSON.parse(localStorage.getItem('user')!);
+        this.isLogged = true;
       } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        // localStorage.setItem('user', 'null');
+        // JSON.parse(localStorage.getItem('user')!);
+        this.isLogged = false;
       }
     });
     this.authState = this.afAuth.authState;
   }
+
   // Sign in with email/password
   async SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
-        this.afAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['/']);
-          }
-        });
+        if (result.user?.emailVerified) {
+          this.SetUserData(result.user);
+          this.afAuth.authState.subscribe((user) => {
+            if (user) {
+              console.log("username: ", user?.displayName)
+              this.router.navigate(['/']); // redirect after login
+            }
+          });
+          console.log("username: ", result.user?.displayName)
+        } else {
+          window.alert('Please verify your email before logging in.');
+          this.SignOut(); // log out unverified users
+        }
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
+
   // Sign up with email/password
   async SignUp(email: string, password: string, username: string) {
     return this.afAuth
@@ -78,14 +87,13 @@ export class AuthService {
         alert(error.message);
       });
   }
-  
 
   SetUserDataSignUp(user: any, username: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: username, // Save the username
+      displayName: username,
       photoURL: user.photoURL || '',
       emailVerified: user.emailVerified
     };
@@ -114,29 +122,10 @@ export class AuthService {
   }
 
   // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false ? true : false;
-  }
-
-  // Sign in with Google
-  async GoogleAuth() {
-    return this.AuthLogin(new GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']);
-    });
-  }
-
-  // Auth logic to run auth providers
-  async AuthLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.router.navigate(['dashboard']);
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
+  isLoggedIn(): boolean {
+    // const user = JSON.parse(localStorage.getItem('user')!);
+    // return user !== null && user.emailVerified !== false ? true : false;
+    return this.isLogged;
   }
 
   /* Setting up user data when sign in with username/password,
@@ -157,6 +146,7 @@ export class AuthService {
       merge: true,
     });
   }
+
   // Sign out
   async SignOut() {
     return this.afAuth.signOut().then(() => {
