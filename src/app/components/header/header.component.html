@@ -1,12 +1,26 @@
 <nav class="nav-container">
-    <ul>
-      <li  [class.sticky]="item.sticky" *ngFor="let item of menu">
+  <ul>
+    <!-- home button always visible -->
+    <li *ngIf="homeItem">
+      <a [routerLink]="homeItem.path">{{ homeItem.label }}</a>
+    </li>
+
+    <ng-container *ngIf="isLoggedIn">
+      <li [class.sticky]="item.sticky" *ngFor="let item of menu">
         <a [routerLink]="item.path">{{ item.label }}</a>
       </li>
-    </ul>
-    <app-language-switcher></app-language-switcher>
-        <div class="logo">
-      <img src="logo.png" alt="Logo">
-    </div>
-  </nav>
-  
+    </ng-container>
+
+    <li>
+      <a *ngIf="!isLoggedIn; else logoutTemplate" routerLink="/login">Login</a>
+      <ng-template #logoutTemplate>
+        <a (click)="logout()" style="cursor: pointer;">Logout</a>
+      </ng-template>
+    </li>
+  </ul>
+
+  <app-language-switcher></app-language-switcher>
+  <div class="logo">
+    <img src="logo.png" alt="Logo" />
+  </div>
+</nav>

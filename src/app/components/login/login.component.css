@@ -1,0 +1,81 @@
+/* Center the login container */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 10px;
+  background: var(--primary-color);
+  border: none;
+  color: var(--gradient-dark);
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn-login:hover {
+  background: var(--gradient-dark);
+  color:  var(--primary-color);
+}
+
+/* Links section */
+.links {
+  margin-top: 15px;
+}
+
+.links a {
+  display: block;
+  text-decoration: none;
+  color: var(--gradient-dark);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.links span {
+  font-weight: bold;
+  color: #ff5733;
+}

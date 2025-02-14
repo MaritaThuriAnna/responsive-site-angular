@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Willkommen auf Ihrer Website!",
+    "title": "Willkommen auf Ihrer Website",
     "content": "Erkunden Sie unsere Dienstleistungen, lernen Sie das Unternehmen kennen und nehmen Sie Kontakt auf!"
   },
   "about": {
@@ -23,7 +23,8 @@
     "Home": "Startseite",
     "About": "Über uns",
     "Services": "Dienstleistungen",
-    "Contact": "Kontakt"
+    "Contact": "Kontakt",
+    "Login": "Einloggen"
   },
   "footer": {
     "label": "2025 Ihr Unternehmen. Alle Rechte vorbehalten."

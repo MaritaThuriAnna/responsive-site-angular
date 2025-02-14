@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Welcome to Your Site!",
+    "title": "Welcome to Your Site",
     "content": "Explore our services, learn about the business, and get in touch!"
   },
   "about": {
@@ -23,7 +23,8 @@
     "Home": "Home",
     "About": "About",
     "Services": "Services",
-    "Contact": "Contact"
+    "Contact": "Contact",
+    "Login": "Login"
   },
   "footer": {
     "label": "2025 Your Company. All Rights Reserved."

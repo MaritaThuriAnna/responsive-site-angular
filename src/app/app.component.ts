@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {  RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -16,7 +16,6 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   title = 'responsive-site-angular';
   isNotFoundPage = false;
-
   checkRoute(component: any) {
     this.isNotFoundPage = component instanceof NotFoundComponent;
   }
