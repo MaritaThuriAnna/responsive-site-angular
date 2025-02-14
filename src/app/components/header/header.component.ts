@@ -22,10 +22,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    // this.languageService.currentMenu.subscribe((menu) => {
-    //   this.homeItem = menu.find(item => item.label === "Home"); // Extract Home item
-    //   this.menu = menu.filter(item => item.enabled && item.label !== "Home"); // Filter rest
-    // });
 
     this.languageService.currentMenu.subscribe((menu) => {
       this.updateMenu(menu);
@@ -36,18 +32,22 @@ export class HeaderComponent implements OnInit {
     });
     this.languageService.loadMenu();
 
+
     this.authService.authState.subscribe((user) => {
       this.isLoggedIn = !!user; 
     });
 
-    this.isLoggedIn = this.authService.isLoggedIn()
+    // this.isLoggedIn = this.authService.isLoggedIn()
+    this.isLoggedIn = await this.authService.isAuthenticated();
   }
 
   updateMenu(menu: any[]) {
     this.homeItem = menu.find(item => item.path === "/");
-    this.menu = menu.filter(item => item.enabled && item.label !== "/");
+  
+    // 🔥 Ensure "Home" is removed from `menu` to avoid duplication
+    this.menu = menu.filter(item => item.enabled && item.path !== "/");
   }
-
+  
   logout() {
     this.authService.SignOut().then(() => {
       this.router.navigate(['/login']);
