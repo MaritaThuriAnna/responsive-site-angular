@@ -1,21 +1,25 @@
 {
-    "home": {
-      "title": "Willkommen auf Ihrer Website!",
-      "content": "Erkunden Sie unsere Dienstleistungen, lernen Sie das Unternehmen kennen und nehmen Sie Kontakt auf!"
-    },
-    "about": {
-      "title": "Über Uns",
-      "content": "Wir sind ein Unternehmen, das sich der Bereitstellung der besten Dienstleistungen für unsere Kunden widmet."
-    },
-    "services": {
-      "title": "Unsere Dienstleistungen",
-      "content": "Wir bieten eine Reihe professioneller Dienstleistungen, um Ihre Bedürfnisse zu erfüllen."
-    },
-    "contact": {
-      "title": "Kontaktieren Sie Uns",
-      "content": "Kontaktieren Sie uns für Anfragen, Unterstützung oder Kooperationsmöglichkeiten."
-    },
-    "menu": {
+  "home": {
+    "title": "Willkommen auf Ihrer Website!",
+    "content": "Erkunden Sie unsere Dienstleistungen, lernen Sie das Unternehmen kennen und nehmen Sie Kontakt auf!"
+  },
+  "about": {
+    "title": "Über Uns",
+    "content": "Wir sind ein Unternehmen, das sich der Bereitstellung der besten Dienstleistungen für unsere Kunden widmet."
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "content": "Wir bieten eine Reihe professioneller Dienstleistungen, um Ihre Bedürfnisse zu erfüllen.",
+    "countrySelect": "Land auswählen:",
+    "citySelect": "Stadt auswählen:",
+    "countryOption": "Wählen Sie ein Land...",
+    "cityOption": "Wählen Sie eine Stadt..."
+  },
+  "contact": {
+    "title": "Kontaktieren Sie Uns",
+    "content": "Kontaktieren Sie uns für Anfragen, Unterstützung oder Kooperationsmöglichkeiten."
+  },
+  "menu": {
     "Home": "Startseite",
     "About": "Über uns",
     "Services": "Dienstleistungen",
@@ -35,11 +39,10 @@
     "Profile": "Profil",
     "Page Settings": "Seiteneinstellungen"
   },
-    "language": {
-      "switch": "Sprache wechseln",
-      "english": "Englisch",
-      "german": "Deutsch",
-      "romanian": "Rumänisch"
-    }
+  "language": {
+    "switch": "Sprache wechseln",
+    "english": "Englisch",
+    "german": "Deutsch",
+    "romanian": "Rumänisch"
   }
-  
+}

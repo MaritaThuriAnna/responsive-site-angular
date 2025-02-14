@@ -9,7 +9,11 @@
   },
   "services": {
     "title": "Nuestros Servicios",
-    "content": "Ofrecemos una variedad de servicios profesionales para satisfacer tus necesidades."
+    "content": "Ofrecemos una variedad de servicios profesionales para satisfacer tus necesidades.",
+    "countrySelect": "Seleccionar país:",
+    "citySelect": "Seleccionar ciudad:",
+    "countryOption": "Selecciona un país...",
+    "cityOption": "Selecciona una ciudad..."
   },
   "contact": {
     "title": "Contáctanos",

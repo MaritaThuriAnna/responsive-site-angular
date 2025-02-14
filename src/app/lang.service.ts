@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
 import { ConfigService } from "./config.service";
+import { DropdownService } from "./dropdown.service";
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,22 @@ export class LanguageService {
   private currentPageSource = new BehaviorSubject<string>('home');
   currentPage = this.currentPageSource.asObservable();
 
-  private pageContentSource = new BehaviorSubject<{ title: string; content: string }>({
-    title: '',
-    content: ''
-  });
+  private pageContentSource =
+    new BehaviorSubject<{
+      title: string;
+      content: string;
+      countrySelect: string;
+      citySelect: string;
+      countryOption: string;
+      cityOption: string;
+    }>({
+      title: '',
+      content: '',
+      countrySelect: '',
+      citySelect: '',
+      countryOption: '',
+      cityOption: ''
+    });
 
   currentPageContent = this.pageContentSource.asObservable();
 
@@ -33,7 +46,9 @@ export class LanguageService {
   });
   currentFooter = this.footerSource.asObservable();
 
-  constructor(private translate: TranslateService, private configService: ConfigService) {
+  constructor(
+    private translate: TranslateService,
+    private configService: ConfigService) {
     this.translate.setDefaultLang('en');
     this.loadPageContent('home');
     this.loadMenu();
@@ -58,10 +73,21 @@ export class LanguageService {
   }
 
   loadPageContent(page: string) {
-    this.translate.get([`${page}.title`, `${page}.content`]).subscribe((translations) => {
+    this.translate.get([
+      `${page}.title`,
+      `${page}.content`,
+      `${page}.countrySelect`,
+      `${page}.citySelect`,
+      `${page}.countryOption`,
+      `${page}.cityOption`
+    ]).subscribe((translations) => {
       this.pageContentSource.next({
         title: translations[`${page}.title`],
-        content: translations[`${page}.content`]
+        content: translations[`${page}.content`],
+        countrySelect: translations[`${page}.countrySelect`],
+        citySelect: translations[`${page}.citySelect`],
+        countryOption: translations[`${page}.countryOption`],
+        cityOption: translations[`${page}.cityOption`]
       });
     });
   }
@@ -83,20 +109,21 @@ export class LanguageService {
 
   async loadFooter() {
     try {
-      const config = await this.configService.loadConfig();  
+      //loads default footer text
+      const config = await this.configService.loadConfig();
       this.translate.get('footer.label').subscribe((translatedText: string) => {
         const translatedFooter = {
           label: translatedText || config.footer.label,
           enabled: config.footer.enabled,
           sticky: config.footer.sticky
         };
-          this.footerSource.next(translatedFooter);
+        this.footerSource.next(translatedFooter);
       });
-  
+
     } catch (error) {
     }
   }
-  
+
   async loadSidebar() {
     try {
       const config = await this.configService.loadConfig();
@@ -106,9 +133,9 @@ export class LanguageService {
           label: translations[item.label] || item.label,
           subMenu: item.subMenu
             ? item.subMenu.map((sub: any) => ({
-                ...sub,
-                label: translations[sub.label] || sub.label
-              }))
+              ...sub,
+              label: translations[sub.label] || sub.label
+            }))
             : []
         }));
         this.sidebarSource.next(translatedSidebar);
@@ -118,5 +145,4 @@ export class LanguageService {
       console.error("Failed to load sidebar:", error);
     }
   }
-
 }

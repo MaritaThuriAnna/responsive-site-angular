@@ -41,8 +41,8 @@ export class ThemeService {
     const color = this.colorSource.getValue();
     const isDark = this.darkModeSource.getValue();
 
-    const gradientLight = `linear-gradient(to right, ${color}, #2c3e50)`;
-    const gradientDark = `linear-gradient(to right, #2c3e50, ${color})`;
+    const gradientLight = `linear-gradient(to right, ${color}, #1e1e1e)`;
+    const gradientDark = `linear-gradient(to right, #1e1e1e, ${color})`;
     const btnDark = `#1e1e1e`;
 
     document.documentElement.style.setProperty('--sidebar-gradient', isDark ? gradientDark : gradientLight);
