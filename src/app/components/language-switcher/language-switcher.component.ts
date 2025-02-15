@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import { LanguageService } from '../../lang.service';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-language-switcher',
@@ -18,7 +19,8 @@ export class LanguageSwitcherComponent {
   ];
 
   languageService = inject(LanguageService);
-
+  authService = inject(AuthService);
+  
   changeLanguage(event: Event) {
     const target = event.target as HTMLSelectElement; 
     const lang = target.value;
@@ -26,6 +28,11 @@ export class LanguageSwitcherComponent {
     if (lang) {
       console.log(`Switching to: ${lang}`);
       this.languageService.changeLanguage(lang);
+
+      this.authService.saveUserPreferences(
+        this.authService.userData.preferredTheme ?? 'light',
+        lang
+      );
     }
   }
   

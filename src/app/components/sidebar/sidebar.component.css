@@ -1,5 +1,5 @@
 .sidebar {
-    background: var(--sidebar-gradient);
+    background: var(--sidebar-gradient, #9fb7d0);
     color: white;
     transition: background 0.3s ease-in-out, width 0.3s ease-in-out;
     overflow: hidden;
