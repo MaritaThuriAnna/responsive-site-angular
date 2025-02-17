@@ -233,6 +233,9 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.userToken = null;
+      document.documentElement.setAttribute('data-theme', 'light');
+      this.languageService.changeLanguage('en')
+      
       this.router.navigate(['/login']);
     });
   }
