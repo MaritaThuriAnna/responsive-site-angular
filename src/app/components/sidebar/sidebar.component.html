@@ -9,14 +9,13 @@
         <span>{{ item.label }}</span>
         <span *ngIf="item.subMenu" [innerHTML]="dropdowns[item.label] ? '&#8679;' : '&#8681;'"></span>
       </div>
-      <ng-container >
-      <ul *ngIf="item.subMenu && dropdowns[item.label]" class="submenu">
-        <li *ngFor="let subItem of item.subMenu">
-          <a (click)="navigateTo(subItem.path)">{{ subItem.label }}</a>
-        </li>
-      </ul>
+      <ng-container>
+        <ul *ngIf="item.subMenu && dropdowns[item.label]" class="submenu">
+          <li *ngFor="let subItem of item.subMenu">
+            <a (click)="navigateTo(subItem.path)">{{ subItem.label }}</a>
+          </li>
+        </ul>
       </ng-container>
-
     </li>
   </ul>
 </div>

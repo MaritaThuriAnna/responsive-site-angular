@@ -1,61 +1,61 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './components/login/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private colorSource = new BehaviorSubject<string>(localStorage.getItem('themeColor') || '#007bff');
-  currentColor = this.colorSource.asObservable();
-
   private fontSource = new BehaviorSubject<string>(localStorage.getItem('themeFont') || 'Arial');
   currentFont = this.fontSource.asObservable();
 
-  private darkModeSource = new BehaviorSubject<boolean>(localStorage.getItem('darkMode') === 'true');
+  private darkModeSource = new BehaviorSubject<boolean>(
+    localStorage.getItem('darkMode') === 'true'
+  );
   darkMode = this.darkModeSource.asObservable();
 
-  constructor() {
-    this.applyTheme();
+  constructor(private authService: AuthService) {
+    this.loadUserPreferences();
   }
 
-  setColor(color: string) {
-    this.colorSource.next(color);
-    localStorage.setItem('themeColor', color);
-    document.documentElement.style.setProperty('--primary-color', color);
-  }
-
+  // Set Font
   setFont(font: string) {
     this.fontSource.next(font);
     localStorage.setItem('themeFont', font);
     document.documentElement.style.setProperty('--primary-font', font);
+
   }
 
+  // Toggle Dark Mode
   toggleDarkMode() {
     const isDark = !this.darkModeSource.getValue();
     this.darkModeSource.next(isDark);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
     localStorage.setItem('darkMode', String(isDark));
+
+    // Save to Firebase
+    this.authService.saveUserPreferences(
+      isDark ? 'dark' : 'light',
+      this.authService.userData.preferredLanguage ?? 'en',
+    );
+  }
+
+  // Load Preferences on Login
+  async loadUserPreferences() {
+    const user = this.authService.getStoredUser();
+    if (user) {
+      if (user.preferredTheme) this.setDarkMode(user.preferredTheme === 'dark');
+    }
+  }
+
+  // Apply Dark Mode
+  setDarkMode(isDark: boolean) {
+    this.darkModeSource.next(isDark);
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }
 
-  updateGradient() {
-    const color = this.colorSource.getValue();
-    const isDark = this.darkModeSource.getValue();
-
-    const gradientLight = `linear-gradient(to right, ${color}, #1e1e1e)`;
-    const gradientDark = `linear-gradient(to right, #1e1e1e, ${color})`;
-    const btnDark = `#1e1e1e`;
-
-    document.documentElement.style.setProperty('--sidebar-gradient', isDark ? gradientDark : gradientLight);
-
-    const darkButtonGradient = `linear-gradient(to right, #1d2b38, ${color})`;
-    document.documentElement.style.setProperty('--gradient-dark', btnDark);
-  }
-
-
-  applyTheme() {
-    document.documentElement.style.setProperty('--primary-color', this.colorSource.getValue());
-    document.documentElement.style.setProperty('--primary-font', this.fontSource.getValue());
-    document.documentElement.setAttribute('data-theme', this.darkModeSource.getValue() ? 'dark' : 'light');
-    this.updateGradient();
+  // Check if Dark Mode is Active
+  isDarkMode(): boolean {
+    return this.darkModeSource.getValue();
   }
 }

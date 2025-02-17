@@ -24,26 +24,26 @@ export class SidebarComponent implements OnInit {
   constructor(
     private languageService: LanguageService,
     private router: Router,
-    private themeService: ThemeService) {}
+    private themeService: ThemeService) { }
 
   async ngOnInit() {
     this.languageService.currentSidebar.subscribe((sidebar) => {
       this.sidebar = sidebar;
+      console.log(" Sidebar Loaded:", this.sidebar);
     });
 
     this.languageService.loadSidebar();
 
-    this.themeService.currentColor.subscribe(color => {
-      this.primaryColor = color;
-      this.themeService.updateGradient();
-    });
-
     this.themeService.darkMode.subscribe(isDark => {
       this.isDarkMode = isDark;
-      this.themeService.updateGradient();
+      console.log(" Theme Mode:", isDark ? "Dark" : "Light");
     });
 
+    // Ensure sidebar is always displayed
+    this.sidebar = this.sidebar.length > 0 ? this.sidebar : [{ label: "Home", path: "/" }];
   }
+
+
 
   navigateTo(path: string) {
     this.router.navigate([path]);

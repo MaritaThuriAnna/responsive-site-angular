@@ -1,11 +1,11 @@
+/*  Sidebar Default */
 .sidebar {
-    background: var(--sidebar-gradient);
-    color: white;
-    transition: background 0.3s ease-in-out, width 0.3s ease-in-out;
+    /* background: var(--sidebar-bg-light, #f4f4f4);
+    color: var(--sidebar-text-light, #333); */
+    transition: background 0.3s ease-in-out, width 0.3s ease-in-out, color 0.3s ease-in-out;
     overflow: hidden;
     padding: 1rem;
     box-sizing: border-box;
-    margin-right: 0.5rem;
     display: flex;
     flex-direction: column;
     border-bottom-right-radius: 10px;
@@ -13,17 +13,21 @@
     top: 65px;
     right: 0;
     height: calc(100vh - 68px);
-    width: 200px;
+    width: 300px;
     transform: translateX(0);
+}
+
+/* Dark Mode */
+[data-theme="dark"] .sidebar {
+    background: var(--sidebar-bg-dark, #1e1e1e);
+    color: var(--sidebar-text-dark, #f1f1f1);
 }
 
 .sidebar.collapsed {
     width: 80px;
-    margin-right: 0.5rem;
     overflow: hidden;
 }
 
-/* ca sa nu se vada cand e collapsed */
 .sidebar.collapsed .menu-item span,
 .sidebar.collapsed .menu-item a,
 .sidebar.collapsed .submenu a,
@@ -34,7 +38,7 @@
 .toggle-btn {
     top: 15px;
     right: 15px;
-    background: var(--gradient-dark);
+    /* background: var(--toggle-btn-light, #007bff); */
     color: white;
     border: none;
     border-radius: 100%;
@@ -49,14 +53,8 @@
     transition: background 0.3s ease;
 }
 
-.toggle-btn:hover {
-    background: #3f5c77;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+[data-theme="dark"] .toggle-btn {
+    background: var(--toggle-btn-dark, #444);
 }
 
 .menu-item {
@@ -67,43 +65,55 @@ ul {
     cursor: pointer;
     font-size: 1.1rem;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .menu-item:hover {
-    background: var(--gradient-dark);
+    background: var(--menu-hover-light, #ddd);
+}
+
+/* Dark Mode Hover */
+[data-theme="dark"] .menu-item:hover {
+    background: var(--menu-hover-dark, #333);
 }
 
 .submenu {
     padding-left: 1rem;
-    background: var(--gradient-dark);
+    background: var(--submenu-bg-light, #e0e0e0);
     border-radius: 5px;
     margin-top: 0.3rem;
-}
-
-.submenu li {
-    padding: 0.5rem;
     transition: background 0.3s ease;
 }
 
-.submenu li:hover {
-    background: #353637;
+/* Dark Mode Submenu */
+[data-theme="dark"] .submenu {
+    background: var(--submenu-bg-dark, #2b2b2b);
 }
 
+/* Dark Mode Submenu Hover */
+[data-theme="dark"] .submenu li:hover {
+    background: var(--submenu-hover-dark, #444);
+}
+
+/* 🖋Links */
 a {
     text-decoration: none;
-    color: white;
+    color: var(--link-light, #333);
     font-size: 1rem;
 }
 
+/*  Dark Mode Links */
+[data-theme="dark"] a {
+    color: var(--link-dark, #f1f1f1);
+}
 
+/* 📱 Mobile Responsive */
 @media (max-width: 768px) {
     .sidebar {
         align-items: left;
         top: 148px;
-        width: 80px;
+        width: 170px;
         padding: 0.17rem;
-
     }
 
     .toggle-btn {
@@ -125,7 +135,6 @@ a {
         font-size: 0.72rem;
     }
 
-
     .submenu {
         padding-left: 0rem;
     }
@@ -133,6 +142,4 @@ a {
     .submenu a {
         font-size: 0.6rem;
     }
-
-
 }

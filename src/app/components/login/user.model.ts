@@ -4,4 +4,6 @@ export interface User {
   displayName: string | null;
   photoURL:  string | null;
   emailVerified: boolean;
+  preferredTheme?: 'light' | 'dark';
+  preferredLanguage?: string;
 }
