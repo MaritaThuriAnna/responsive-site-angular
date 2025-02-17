@@ -36,7 +36,7 @@ export class AuthService {
   ) {
     // Subscribe to auth state changes
     this.afAuth.authState.subscribe(async (user) => {
-      if (user) {
+      if (user && user.emailVerified) {
         const userRef = this.afs.doc<User>(`users/${user.uid}`);
         const userDoc = await userRef.ref.get();
 
@@ -56,6 +56,7 @@ export class AuthService {
       }
     });
 
+
     this.authState = this.afAuth.authState;
   }
 
@@ -66,20 +67,20 @@ export class AuthService {
       .then(async (result) => {
         if (result.user?.emailVerified) {
           this.userToken = await result.user.getIdToken();
-  
+
           //  Retrieve user details from Firestore
           const userRef = this.afs.doc<User>(`users/${result.user.uid}`);
           const userDoc = await userRef.ref.get();
-  
+
           if (userDoc.exists) {
             this.userData = userDoc.data() as User;
             this.saveUserLocally(this.userData);
             console.log("User Data Retrieved:", this.userData);
-  
+
             //  Apply Preferences Immediately
             this.applyUserPreferences();
           }
-  
+
           this.router.navigate(['/']);
         } else {
           alert(' Please verify your email before logging in.');
@@ -166,7 +167,7 @@ export class AuthService {
     const user = this.userData;
     if (user && user.uid) {
       const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-  
+
       await userRef.set(
         {
           ...user,
@@ -174,59 +175,59 @@ export class AuthService {
           preferredLanguage
         }, { merge: true }
       );
-  
+
       //  Update local storage
       this.userData.preferredTheme = preferredTheme;
       this.userData.preferredLanguage = preferredLanguage;
       this.saveUserLocally(this.userData);
-  
+
       console.log(" Preferences saved:", { preferredTheme, preferredLanguage });
     }
   }
-  
+
 
   //  Apply stored preferences (Theme & Language)
   applyUserPreferences() {
     console.log("Applying preferences...");
-  
+
     if (this.userData.preferredTheme) {
       document.documentElement.setAttribute('data-theme', this.userData.preferredTheme);
       console.log(" Applied Theme:", this.userData.preferredTheme);
     }
-  
+
     if (this.userData.preferredLanguage) {
       this.languageService.changeLanguage(this.userData.preferredLanguage);
       console.log(" Applied Language:", this.userData.preferredLanguage);
     }
   }
-  
-// Send email verfificaiton when new user sign up
-async SendVerificationMail() {
-  return this.afAuth.currentUser
-    .then((u: any) => u.sendEmailVerification())
-    .then(() => {
-      this.router.navigate(['verify-email-address']);
-    });
-}
 
-// Reset Forggot password
-async ForgotPassword(passwordResetEmail: string) {
-  return this.afAuth
-    .sendPasswordResetEmail(passwordResetEmail)
-    .then(() => {
-      window.alert('Password reset email sent, check your inbox.');
-    })
-    .catch((error) => {
-      window.alert(error);
-    });
-}
+  // Send email verfificaiton when new user sign up
+  async SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email-address']);
+      });
+  }
 
-// Returns true when user is looged in and email is verified
-isLoggedIn(): boolean {
-  // const user = JSON.parse(localStorage.getItem('user')!);
-  // return user !== null && user.emailVerified !== false ? true : false;
-  return this.isLogged;
-}
+  // Reset Forggot password
+  async ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth
+      .sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }
+
+  // Returns true when user is looged in and email is verified
+  isLoggedIn(): boolean {
+    // const user = JSON.parse(localStorage.getItem('user')!);
+    // return user !== null && user.emailVerified !== false ? true : false;
+    return this.isLogged;
+  }
   // Sign out
   async SignOut() {
     return this.afAuth.signOut().then(() => {
